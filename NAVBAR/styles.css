@@ -19,12 +19,23 @@ body {
     left: 0;
     width: 100%;
     padding: 1.3rem 10%;
-    /*background: rgba(0, 0, 0, .1);
-    backdrop-filter: blur(50px);*/
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: red;
+    background: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(50px);
+    z-index: -1;
 }
 
 .logo {
@@ -40,6 +51,10 @@ body {
     font-weight: 500;
     margin-left: 2.5rem;
 }
+#check {
+    display: none;
+}
+
 .icons {
     position: absolute;
     font-size: 2.8rem;
@@ -60,16 +75,31 @@ body {
     .icons {
         display: inline-flex;
     }
+    #check:checked~.icons #menu-icon {
+        display: none;
+    }
+    .icons #close-icon {
+        display: none;
+    }
+    #check:checked~.icons #close-icon {
+        display: block;
+    }
     .navbar {
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        height: 17.7rem;
+        height: 0;
         background: red;
         background: rgba(0, 0, 0, .1);
         backdrop-filter: blur(50px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        overflow: hidden;
+        transition: .3s ease;
+    }
 
+    #check:checked~.navbar {
+        height: 17.7rem; 
     }
     .navbar a {
         display: block;
